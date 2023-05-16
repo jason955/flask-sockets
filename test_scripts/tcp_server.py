@@ -3,7 +3,7 @@ import sys
 from enum import Enum
 
 HOST = "127.0.0.1"
-PORT = 1235
+PORT = 1240
 DEMO_STATE = 0
 
 #define a state variable

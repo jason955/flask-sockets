@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	<link rel="stylesheet" href="{{ url_for('static', filename='asset_code.css') }}">
+	  	<script src="https://unpkg.com/htmx.org@1.7.0"></script>
+	  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	</head>
+	<body>
+		<h1>LoRaWAN-Docker Demo</h1>
+		<div id="operator-console">
+			<h4>Operator Console</h4>
+			<form action="/send" method="POST">>
+				<p hidden hx-get="/data" hx-target="#output_api" hx-trigger="every 15s"></p>
+				<p id="output_api" class="subtitle has-text-grey mt-6"></p>
+				{{ other_text }}
+			</form>
+			<br>
+			<br>
+
+			<p id="output_api" class="subtitle has-text-grey mt-6"></p>
+			Prediction: {{ prediction_text }}
+		</div>
+	</body>
+</html>

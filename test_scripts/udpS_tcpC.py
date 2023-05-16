@@ -1,6 +1,5 @@
 import socket
 import sys
-from enum import Enum
 
 SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 1235
@@ -11,25 +10,22 @@ DEMO_STATE = 0
 
 gnuradio_socket = []
 
-#define a state variable
-class State(Enum):
-	INIT = 1
-	RUN = 3
-	CLOSE = 4
+
+
 
 def zcu_comms(currentState):
 	while True:
-		if currentState == State.INIT:
+		if currentState == 0: #INIT
 
 			gnuradio_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			gnuradio_socket.bind((GNU_HOST,GNU_PORT))
 			print("Connected to GNURadio")
 
 
-			currentState = State.RUN
+			currentState = 1
 
-		elif currentState == State.RUN:
-			if DEMO_STATE == "1": #RX Demo
+		elif currentState == 1: #RUN
+			if DEMO_STATE == 1: #RX Demo
 				print("Running RX Demo")
 				try:
 					#while True:
@@ -45,18 +41,17 @@ def zcu_comms(currentState):
 				except:
 					print("error")
 					pass
-				#currentState = State.CLOSE
 
-			elif DEMO_STATE == "2": #TX Demo
+			elif DEMO_STATE == 2: #TX Demo
 				print("Running TX Demo")
-			elif DEMO_STATE == "3": #Replay Auto Demo
+			elif DEMO_STATE == 3: #Replay Auto Demo
 				print("Running Replay Auto Demo")
-			elif DEMO_STATE == "4": #Replay Manual Demo
+			elif DEMO_STATE == 4: #Replay Manual Demo
 				print("Running Replay Manual Demo")
 			else:
 				print("Bad state. Closing socket connection")
-				currentState = State.CLOSE
-		elif currentState == State.CLOSE:
+				currentState = 2
+		elif currentState == 2: #CLOSING
 			print("\nClosing socket")
 			gnuradio_socket.close()
 			break
@@ -64,5 +59,6 @@ def zcu_comms(currentState):
 			print("Invalid State")
 
 if __name__ == '__main__':
-	DEMO_STATE = sys.argv[1]
-	zcu_comms(State.INIT)
+	#DEMO_STATE = int(sys.argv[1])
+	DEMO_STATE = 1
+	zcu_comms(0)
