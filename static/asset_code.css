@@ -195,3 +195,7 @@ input {
   font-size:14pt;
 }
 
+#operator-console {
+  float:right;
+  margin:5%;
+}

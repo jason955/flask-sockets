@@ -10,3 +10,5 @@ To run the app:
 - copy the URL that is printed in the terminal, and paste it into a browser
 
 ![Screen Recording GIF of Flask App](first_flask_app_gif.gif)
+
+install apscheduler"# flask-sockets" 
