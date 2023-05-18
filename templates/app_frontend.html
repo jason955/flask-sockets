@@ -13,18 +13,35 @@
 		<div class="main">
 			<div class="display_box">
 				<h3>Demodulated Hex</h4>
-				<form action="/send" method="POST">
+				<form action="/send_replay" method="POST">
 					<p hidden hx-get="/data" hx-target="#output_api" hx-trigger="every 5s"></p>
 					<p id="output_api" class="subtitle has-text-grey mt-6"></p>				
 				</form>
 			</div>
+			<div class="display_box">
+				<h3>Radio Commands</h4>
+				<form class="change_button" action="/send_start" method="POST">
+					<button class="change_button" type="submit">Start</button>
+				</form>
+				<form class="change_button" action="/set_freq" method="POST">
+					<button class="change_button" type="submit">Change Frequency</button>
+				</form>
+				<form class="change_button" action="/set_sf" method="POST">
+					<button class="change_button" type="submit">Change SF</button>
+				</form>
+				<form class="change_button" action="/set_xx" method="POST">
+					<button class="change_button" type="submit">Change XX</button>
+				</form>
+				<form class="change_button" action="/set_xxx" method="POST">
+					<button class="change_button" type="submit">Change XXX</button>
+				</form>								
+			</div>
 			<div class="radio_input_box">
-				<form action="/send" method="POST">
+				<form action="/send_cmd_line" method="POST">
 					<label for="fname">Radio Command:</label>
-	  				<input type="text" id="rcmd" name="rcmd">
+	  				<input type="text" id="cmdl" name="cmdl">
 					<button type="submit">Send</button>
 				</form>
-
 			</div>
 		</div>
 	</body>
